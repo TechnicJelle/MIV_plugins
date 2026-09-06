@@ -21,4 +21,3 @@ jobs:
       uses: actions/upload-artifact@v7
       with:
         path: "*.so"
-        archive: false
