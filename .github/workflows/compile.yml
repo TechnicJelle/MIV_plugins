@@ -14,7 +14,7 @@ jobs:
       with:
         submodules: recursive
     - name: Install compilation dependencies
-      run: sudo apt install libwebp
+      run: sudo apt install libwebp-dev
     - name: Compile
       run: ./compile.sh release
     - name: Upload
