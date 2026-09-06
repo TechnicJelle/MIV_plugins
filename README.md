@@ -1,4 +1,4 @@
-# Tech's MIV plugins
+# Tech's [MIV](https://github.com/Stvff/MIV) plugins
 
 Available plugins:
 - `miv_stbi`: uses [stb_image](https://github.com/nothings/stb) for loading images
