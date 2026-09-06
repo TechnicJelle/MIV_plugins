@@ -11,9 +11,11 @@ Available plugins:
 	- `.PPM` Only the binary format is supported (P6). The ascii format (P3) is not supported.
 	- `.PGM` Only the binary format is supported (P5). The ascii format (P2) is not supported.
 
-Planned plugins:
+WIP plugins:
 - `miv_libwebp`: uses the system-installed [libwebp](https://chromium.googlesource.com/webm/libwebp)
 	- `.WEBP`
+
+Planned plugins:
 - `miv_libavif`: uses the system-installed [libavif](https://github.com/aomediacodec/libavif)
 	- `.AVIF`
 - `miv_libheif`: uses the system-installed [libheif](https://github.com/strukturag/libheif)
