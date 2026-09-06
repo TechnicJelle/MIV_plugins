@@ -1,0 +1,6 @@
+[submodule "MIV"]
+	path = MIV
+	url = https://github.com/Stvff/MIV.git
+[submodule "stb"]
+	path = stb
+	url = https://github.com/nothings/stb.git
