@@ -6,7 +6,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb/stb_image.h"
 
-constexpr int TOTAL_IMAGE_FORMATS = 9;
+const int TOTAL_IMAGE_FORMATS = 9;
 static int called_n_times;
 
 int64_t registration_procedure(Plugin_Registration_Entry *registration) {
@@ -65,7 +65,7 @@ int64_t registration_procedure(Plugin_Registration_Entry *registration) {
 	}
 
 	registration->procedure_prefix = (string){0};
-	registration->has_settings = false;
+	registration->has_settings = 0;
 
 	called_n_times += 1;
 	return TOTAL_IMAGE_FORMATS - called_n_times;
@@ -92,11 +92,11 @@ Log pre_render(Pre_Rendering_Info *pre_info) {
 }
 
 Log render(Pre_Rendering_Info *pre_info, Rendering_Info *render_info) {
-	constexpr int desired_channels = 4;
+	const int desired_channels = 4;
 	int x,y,n;
 	unsigned char *data = stbi_load_from_file(pre_info->fileptr, &x, &y, &n, desired_channels);
 	// ... process data if not NULL ...
-	if (data == nullptr) {
+	if (data == NULL) {
 		return (Log){
 			.type = LOG_TYPE_ERROR,
 			.message = to_string("Allocation failure or the image is corrupt or invalid"),
