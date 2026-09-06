@@ -72,9 +72,9 @@ int64_t registration_procedure(Plugin_Registration_Entry *registration) {
 }
 
 Log pre_render(Pre_Rendering_Info *pre_info) {
-	int x,y,n,ok;
-	ok = stbi_info_from_file(pre_info->fileptr, &x, &y, &n);
-	// returns ok=1 and sets x, y, n if image is a supported format, 0 otherwise.
+	int x,y,n;
+	int ok = stbi_info_from_file(pre_info->fileptr, &x, &y, &n);
+	// returns ok=1 and sets x,y,n if image is a supported format, returns 0 otherwise.
 	if (ok == 0) {
 		char *err = (char*)stbi_failure_reason();
 		return (Log){
