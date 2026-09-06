@@ -23,7 +23,7 @@ Log pre_render(Pre_Rendering_Info *pre_info) {
 	if (success == 0) {
 		return (Log){
 			.type = LOG_TYPE_ERROR,
-			.message = to_string("Invalid WebP file"),
+			.message = to_string("Invalid WebP file header"),
 		};
 	}
 
@@ -54,7 +54,7 @@ Log render(Pre_Rendering_Info *pre_info, Rendering_Info *render_info) {
 	if (data == NULL) {
 		return (Log){
 			.type = LOG_TYPE_ERROR,
-			.message = to_string("Invalid WebP file"),
+			.message = to_string("Invalid WebP file data"),
 		};
 	}
 
