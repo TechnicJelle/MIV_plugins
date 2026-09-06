@@ -13,24 +13,46 @@ int64_t registration_procedure(Plugin_Registration_Entry *registration) {
 	return 0;
 }
 
+void add_to_metadata(Pre_Rendering_Info *pre_info, char* key, char* value) {
+	pre_info->metadata_count += 1;
+	pre_info->metadata = realloc(pre_info->metadata, pre_info->metadata_count*sizeof(string[2]));
+	pre_info->metadata[pre_info->metadata_count-1][0] = to_string(key);
+	pre_info->metadata[pre_info->metadata_count-1][1] = to_string(value);
+}
+
 Log pre_render(Pre_Rendering_Info *pre_info) {
 	const size_t data_size = 32;
 	uint8_t file_data[data_size];
 	size_t read_size = fread(file_data, 1, data_size, pre_info->fileptr);
 
-	int width, height;
-	int success = WebPGetInfo(file_data, read_size, &width, &height);
-	if (success == 0) {
+	WebPBitstreamFeatures features;
+	VP8StatusCode status = WebPGetFeatures(file_data, read_size, &features);
+	if (status != VP8_STATUS_OK) {
+		char* errs[8] = {
+			"Invalid WebP file header (OK ← this should never happen!)",
+			"Invalid WebP file header (OUT_OF_MEMORY)",
+			"Invalid WebP file header (INVALID_PARAM)",
+			"Invalid WebP file header (BITSTREAM_ERROR)",
+			"Invalid WebP file header (UNSUPPORTED_FEATURE)",
+			"Invalid WebP file header (SUSPENDED)",
+			"Invalid WebP file header (USER_ABORT)",
+			"Invalid WebP file header (NOT_ENOUGH_DATA)",
+		};
 		return (Log){
 			.type = LOG_TYPE_ERROR,
-			.message = to_string("Invalid WebP file header"),
+			.message = to_string(errs[status]),
 		};
 	}
 
-	pre_info->width = width;
-	pre_info->height = height;
+	pre_info->width = features.width;
+	pre_info->height = features.height;
 	pre_info->bit_depth = 8;
-	pre_info->channels = 4; //is that right..?
+	pre_info->channels = features.has_alpha ? 4 : 3;
+
+	add_to_metadata(pre_info, "animated", features.has_animation ? "yes" : "no");
+
+	char* formats[3] = {"undefined (/mixed)", "lossy", "lossless"};
+	add_to_metadata(pre_info, "format", formats[features.format]);
 
 	return (Log){0};
 }
