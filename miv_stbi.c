@@ -97,9 +97,10 @@ Log render(Pre_Rendering_Info *pre_info, Rendering_Info *render_info) {
 	unsigned char *data = stbi_load_from_file(pre_info->fileptr, &x, &y, &n, desired_channels);
 	// ... process data if not NULL ...
 	if (data == NULL) {
+		char *err = (char*)stbi_failure_reason();
 		return (Log){
 			.type = LOG_TYPE_ERROR,
-			.message = to_string("Allocation failure or the image is corrupt or invalid"),
+			.message = to_string(err),
 		};
 	}
 	// ... x = width, y = height, n = # 8-bit components per pixel ...
