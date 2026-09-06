@@ -14,8 +14,8 @@ int64_t registration_procedure(Plugin_Registration_Entry *registration) {
 }
 
 Log pre_render(Pre_Rendering_Info *pre_info) {
-	size_t data_size = 32;
-    uint8_t file_data[32];
+	const size_t data_size = 32;
+	uint8_t file_data[data_size];
 	size_t read_size = fread(file_data, 1, data_size, pre_info->fileptr);
 
 	int width, height;
