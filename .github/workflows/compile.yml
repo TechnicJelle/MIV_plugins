@@ -1,0 +1,22 @@
+name: Compile
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v7
+      with:
+        submodules: recursive
+    - name: Compile
+      run: ./compile.sh release
+    - name: Upload
+      uses: actions/upload-artifact@v7
+      with:
+        path: *.so
+        archive: false
