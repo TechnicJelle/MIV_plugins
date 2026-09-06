@@ -10,8 +10,6 @@ Available plugins:
 	- `.GIF` Not animated.
 	- `.PPM` Only the binary format is supported (P6). The ascii format (P3) is not supported.
 	- `.PGM` Only the binary format is supported (P5). The ascii format (P2) is not supported.
-
-WIP plugins:
 - `miv_libwebp`: uses the system-installed [libwebp](https://chromium.googlesource.com/webm/libwebp)
 	- `.WEBP`
 
