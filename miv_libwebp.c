@@ -131,5 +131,10 @@ Log cleanup(Pre_Rendering_Info *pre_info) {
 		free(pre_info->user_ptr);
 		pre_info->user_ptr = NULL;
 	}
+	if (pre_info->metadata != NULL) {
+		free(pre_info->metadata);
+		pre_info->metadata = NULL;
+		pre_info->metadata_count = 0;
+	}
 	return (Log){0};
 }
