@@ -29,14 +29,14 @@ Log pre_render(Pre_Rendering_Info *pre_info) {
 	VP8StatusCode status = WebPGetFeatures(file_data, read_size, &features);
 	if (status != VP8_STATUS_OK) {
 		char* errs[8] = {
-			"Invalid WebP file header (OK ← this should never happen!)",
-			"Invalid WebP file header (OUT_OF_MEMORY)",
-			"Invalid WebP file header (INVALID_PARAM)",
-			"Invalid WebP file header (BITSTREAM_ERROR)",
-			"Invalid WebP file header (UNSUPPORTED_FEATURE)",
-			"Invalid WebP file header (SUSPENDED)",
-			"Invalid WebP file header (USER_ABORT)",
-			"Invalid WebP file header (NOT_ENOUGH_DATA)",
+			"Invalid WebP file header: OK (this should never happen!)",
+			"Invalid WebP file header: OUT_OF_MEMORY",
+			"Invalid WebP file header: INVALID_PARAM",
+			"Invalid WebP file header: BITSTREAM_ERROR",
+			"Invalid WebP file header: UNSUPPORTED_FEATURE",
+			"Invalid WebP file header: SUSPENDED",
+			"Invalid WebP file header: USER_ABORT",
+			"Invalid WebP file header: NOT_ENOUGH_DATA",
 		};
 		return (Log){
 			.type = LOG_TYPE_ERROR,
