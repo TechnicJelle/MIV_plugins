@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include <webp/decode.h>
+#include <webp/demux.h>
 
 int64_t registration_procedure(Plugin_Registration_Entry *registration) {
 	// Magic Numbers from: https://en.wikipedia.org/wiki/List_of_file_signatures
@@ -96,10 +97,30 @@ Log render(Pre_Rendering_Info *pre_info, Rendering_Info *render_info) {
 
 		WebPFree(data);
 	} else {
-		return (Log){
-			.type = LOG_TYPE_ERROR,
-			.message = to_string("Animated WebP not supported yet."),
-		};
+		// Animated WebP files need a different API to be loaded
+		WebPAnimDecoderOptions dec_options;
+		WebPAnimDecoderOptionsInit(&dec_options);
+
+		// Tuning 'dec_options' as needed:
+		dec_options.color_mode = MODE_RGBA;
+		dec_options.use_threads = 1;
+
+		WebPAnimDecoder* dec = WebPAnimDecoderNew(&(WebPData){file_data, bytes_read}, &dec_options);
+		if (dec == NULL) {
+			return (Log){
+				.type = LOG_TYPE_ERROR,
+				.message = to_string("Parsing error, invalid option or memory error"),
+			};
+		}
+
+		uint8_t *buf;
+		int timestamp;
+		if (WebPAnimDecoderGetNext(dec, &buf, &timestamp)) {
+			memcpy(render_info->buffer, buf, features->width * features->height * 4);
+		}
+
+		WebPAnimDecoderDelete(dec);
+		free(file_data);
 	}
 
 	return (Log){0};
