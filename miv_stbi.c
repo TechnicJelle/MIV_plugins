@@ -88,8 +88,8 @@ Log pre_render(Pre_Rendering_Info *pre_info) {
 
 Log render(Pre_Rendering_Info *pre_info, Rendering_Info *render_info) {
 	const int desired_channels = 4;
-	int x,y,n;
-	unsigned char *data = stbi_load_from_file(pre_info->fileptr, &x, &y, &n, desired_channels);
+	int x,y;
+	unsigned char *data = stbi_load_from_file(pre_info->fileptr, &x, &y, NULL, desired_channels);
 	// ... process data if not NULL ...
 	if (data == NULL) {
 		char *err = (char*)stbi_failure_reason();
