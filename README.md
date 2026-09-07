@@ -7,11 +7,11 @@ Available plugins:
 	- `.BMP`
 	- `.PSD`
 	- `.TGA`
-	- `.GIF` Not animated.
+	- `.GIF` Animated GIFs only show the first frame.
 	- `.PPM` Only the binary format is supported (P6). The ascii format (P3) is not supported.
 	- `.PGM` Only the binary format is supported (P5). The ascii format (P2) is not supported.
 - `miv_libwebp`: uses the system-installed [libwebp](https://chromium.googlesource.com/webm/libwebp)
-	- `.WEBP`
+	- `.WEBP` Animated WEBPs only show the first frame.
 
 Planned plugins:
 - `miv_libavif`: uses the system-installed [libavif](https://github.com/aomediacodec/libavif)
