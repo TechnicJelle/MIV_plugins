@@ -3,7 +3,7 @@
 
 #include "stb/stb_image.h"
 
-const int TOTAL_IMAGE_FORMATS = 9;
+const int TOTAL_IMAGE_FORMATS = 10;
 static int called_n_times;
 
 int64_t registration_procedure(Plugin_Registration_Entry *registration) {
