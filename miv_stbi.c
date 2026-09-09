@@ -1,4 +1,6 @@
 #include "MIV/plugins/MIV.h"
+#include "common.h"
+
 #include "stb/stb_image.h"
 
 const int TOTAL_IMAGE_FORMATS = 9;
@@ -60,7 +62,7 @@ int64_t registration_procedure(Plugin_Registration_Entry *registration) {
 	}
 
 	registration->procedure_prefix = (string){0};
-	registration->has_settings = 0;
+	registration->has_settings = false;
 
 	called_n_times += 1;
 	return TOTAL_IMAGE_FORMATS - called_n_times;
@@ -70,7 +72,7 @@ Log pre_render(Pre_Rendering_Info *pre_info) {
 	int x,y,n;
 	int ok = stbi_info_from_file(pre_info->fileptr, &x, &y, &n);
 	// returns ok=1 and sets x,y,n if image is a supported format, returns 0 otherwise.
-	if (ok == 0) {
+	if (ok == false) {
 		char *err = (char*)stbi_failure_reason();
 		return (Log){
 			.type = LOG_TYPE_ERROR,

@@ -1,5 +1,5 @@
 #include "MIV/plugins/MIV.h"
-#include <stdlib.h>
+#include "common.h"
 
 #include <webp/decode.h>
 #include <webp/demux.h>
@@ -10,15 +10,8 @@ int64_t registration_procedure(Plugin_Registration_Entry *registration) {
 	registration->extension = to_string("WEBP");
 	registration->magic_number = to_string("\x52\x49\x46\x46"); //TODO: This is only the "RIFF" part... How do I specify the "WEBP" part?
 	registration->procedure_prefix = (string){0};
-	registration->has_settings = 0;
+	registration->has_settings = false;
 	return 0;
-}
-
-void add_to_metadata(Pre_Rendering_Info *pre_info, char* key, char* value) {
-	pre_info->metadata_count += 1;
-	pre_info->metadata = realloc(pre_info->metadata, pre_info->metadata_count*sizeof(string[2]));
-	pre_info->metadata[pre_info->metadata_count-1][0] = to_string(key);
-	pre_info->metadata[pre_info->metadata_count-1][1] = to_string(value);
 }
 
 typedef struct {
