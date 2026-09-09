@@ -78,6 +78,7 @@ Log pre_render(Pre_Rendering_Info *pre_info) {
 		zip_fclose(maindocFile);
 
 		xmlDocPtr doc = xmlReadMemory(file_data, (int)bytes_read, maindocName, NULL, 0);
+		free(file_data);
 		if (doc == NULL) {
 			return (Log){
 				.type = LOG_TYPE_ERROR,
@@ -174,6 +175,7 @@ Log render(Pre_Rendering_Info *pre_info, Rendering_Info *render_info) {
 	const int desired_channels = 4;
 	int x=0,y=0;
 	unsigned char *data = stbi_load_from_memory(file_data, (int)bytes_read, &x, &y, NULL, 4);
+	free(file_data);
 	if (data == NULL) {
 		char *err = (char*)stbi_failure_reason();
 		return (Log){
