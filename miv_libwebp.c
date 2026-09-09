@@ -74,21 +74,16 @@ Log render(Pre_Rendering_Info *pre_info, Rendering_Info *render_info) {
 
 	// Decode file data to pixel data
 	if (!features->has_animation) {
-		int width, height;
-		uint8_t *data = WebPDecodeRGBA(file_data, bytes_read, &width, &height);
+		uint8_t *outputted = WebPDecodeRGBAInto(file_data, bytes_read, (uint8_t*)render_info->buffer, render_info->buffer_count * 4, features->width * 4);
 		free(file_data);
 
 		// Process data if not NULL
-		if (data == NULL) {
+		if (outputted == NULL) {
 			return (Log){
 				.type = LOG_TYPE_ERROR,
 				.message = to_string("Invalid WebP file data"),
 			};
 		}
-
-		memcpy(render_info->buffer, data, width * height * 4);
-
-		WebPFree(data);
 	} else {
 		// Animated WebP files need a different API to be loaded
 		WebPAnimDecoderOptions dec_options;
