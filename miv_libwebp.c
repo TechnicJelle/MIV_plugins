@@ -100,6 +100,7 @@ Log render(Pre_Rendering_Info *pre_info, Rendering_Info *render_info) {
 
 		WebPAnimDecoder *dec = WebPAnimDecoderNew(&(WebPData){file_data, bytes_read}, &dec_options);
 		if (dec == NULL) {
+			free(file_data);
 			return (Log){
 				.type = LOG_TYPE_ERROR,
 				.message = to_string("Parsing error, invalid option or memory error"),
