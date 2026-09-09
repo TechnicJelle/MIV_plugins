@@ -1,6 +1,8 @@
 #include "MIV/plugins/MIV.h"
 #include "common.h"
 
+#include <unistd.h>
+
 #include <zip.h>
 
 #include <libxml/parser.h>
@@ -40,7 +42,7 @@ Log pre_render(Pre_Rendering_Info *pre_info) {
 
 	zip_t *zip;
 	/* Open ZIP file */ {
-		int fd = fileno(pre_info->fileptr);
+		int fd = dup(fileno(pre_info->fileptr));
 		int zip_err=0;
 		zip = zip_fdopen(fd, 0, &zip_err);
 		if (zip == NULL) {
