@@ -26,7 +26,7 @@ typedef struct {
 } PluginData;
 
 Log pre_render(Pre_Rendering_Info *pre_info) {
-	PluginData* plugin_data = malloc(sizeof(PluginData));
+	PluginData *plugin_data = malloc(sizeof(PluginData));
 	pre_info->user_ptr = plugin_data;
 
 	const size_t data_size = 32;
@@ -35,7 +35,6 @@ Log pre_render(Pre_Rendering_Info *pre_info) {
 
 	WebPBitstreamFeatures features;
 	VP8StatusCode status = WebPGetFeatures(file_data, read_size, &features);
-	plugin_data->features = features;
 	if (status != VP8_STATUS_OK) {
 		char* errs[8] = {
 			"Invalid WebP file header: OK (this should never happen!)",
@@ -52,6 +51,7 @@ Log pre_render(Pre_Rendering_Info *pre_info) {
 			.message = to_string(errs[status]),
 		};
 	}
+	plugin_data->features = features;
 
 	pre_info->width = features.width;
 	pre_info->height = features.height;
@@ -67,8 +67,8 @@ Log pre_render(Pre_Rendering_Info *pre_info) {
 }
 
 Log render(Pre_Rendering_Info *pre_info, Rendering_Info *render_info) {
-	PluginData* plugin_data = pre_info->user_ptr;
-	WebPBitstreamFeatures* features = &plugin_data->features;
+	PluginData *plugin_data = pre_info->user_ptr;
+	WebPBitstreamFeatures *features = &plugin_data->features;
 
 	// How big is the file, anyway
 	fseek(pre_info->fileptr, 0, SEEK_END);
@@ -105,7 +105,7 @@ Log render(Pre_Rendering_Info *pre_info, Rendering_Info *render_info) {
 		dec_options.color_mode = MODE_RGBA;
 		dec_options.use_threads = 1;
 
-		WebPAnimDecoder* dec = WebPAnimDecoderNew(&(WebPData){file_data, bytes_read}, &dec_options);
+		WebPAnimDecoder *dec = WebPAnimDecoderNew(&(WebPData){file_data, bytes_read}, &dec_options);
 		if (dec == NULL) {
 			return (Log){
 				.type = LOG_TYPE_ERROR,
