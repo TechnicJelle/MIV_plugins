@@ -1,13 +1,8 @@
-#include "MIV/plugins/MIV.h"
 #include "common.h"
-
 #include <unistd.h>
 
 #include <zip.h>
-
 #include <libxml/parser.h>
-#include <libxml/tree.h>
-
 #include "stb/stb_image.h"
 
 int64_t registration_procedure(Plugin_Registration_Entry *registration) {

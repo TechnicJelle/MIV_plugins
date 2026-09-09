@@ -1,4 +1,3 @@
-#include "MIV/plugins/MIV.h"
 #include "common.h"
 
 #include "stb/stb_image.h"
