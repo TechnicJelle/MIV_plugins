@@ -44,6 +44,7 @@ Log pre_render(Pre_Rendering_Info *pre_info) {
 		int zip_err=0;
 		zip = zip_fdopen(fd, 0, &zip_err);
 		if (zip == NULL) {
+			plugin_data->zip = NULL;
 			static char msg[128];
 			snprintf(msg, sizeof(msg), "Failed to open KRA file as ZIP (libzip:%d)", zip_err);
 			return (Log){
@@ -189,7 +190,7 @@ Log render(Pre_Rendering_Info *pre_info, Rendering_Info *render_info) {
 Log cleanup(Pre_Rendering_Info *pre_info) {
 	if (pre_info->user_ptr != NULL) {
 		PluginData *plugin_data = pre_info->user_ptr;
-		zip_close(plugin_data->zip);
+		if (plugin_data->zip != NULL) zip_close(plugin_data->zip);
 
 		free(pre_info->user_ptr);
 		pre_info->user_ptr = NULL;
