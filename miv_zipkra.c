@@ -130,15 +130,21 @@ Log pre_render(Pre_Rendering_Info *pre_info) {
 			cur = cur->next;
 		}
 
+		// Width & Height, and other required data
 		char* width = attr(cur, "width");
 		char* height = attr(cur, "height");
-		char* colorspacename = attr(cur, "colorspacename");
-		char* profile = attr(cur, "profile");
 
 		pre_info->width = atoi(width);
 		pre_info->height = atoi(height);
 		pre_info->bit_depth = 8;
 		pre_info->channels = 4;
+
+		xmlFree(width);
+		xmlFree(height);
+
+		// Metadata
+		char* colorspacename = attr(cur, "colorspacename");
+		char* profile = attr(cur, "profile");
 
 		add_to_metadata(pre_info, "colourspace name", colorspacename);
 		add_to_metadata(pre_info, "profile", profile);
