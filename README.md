@@ -12,6 +12,10 @@ Available plugins:
 	- `.PGM` Only the binary format is supported (P5). The ascii format (P2) is not supported.
 - `miv_libwebp`: uses the system-installed [libwebp](https://chromium.googlesource.com/webm/libwebp)
 	- `.WEBP` Animated WEBPs only show the first frame.
+- `miv_zipkra`: reads the file as zip using the system-installed [libzip](https://github.com/nih-at/libzip/),
+  loads the metadata from it using the system-installed [libxml2](https://gitlab.gnome.org/GNOME/libxml2),
+  and loads the `mergedimage.png` from it using [stb_image](https://github.com/nothings/stb)
+	- `.KRA`
 
 Planned plugins:
 - `miv_libavif`: uses the system-installed [libavif](https://github.com/aomediacodec/libavif)
@@ -26,9 +30,6 @@ Planned plugins:
 	- `.HTJ2K`
 - `miv_libjxl`: uses the system-installed [libjxl](https://github.com/libjxl/libjxl)
 	- `.JXL`
-- `miv_zipkra`: reads the file as zip using the system-installed [libzip](https://github.com/nih-at/libzip/)
-  and loads the `mergedimage.png` from it using [stb_image](https://github.com/nothings/stb)
-	- `.KRA`
 
 ## [Click here to download!](../../releases/latest)
 
