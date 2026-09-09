@@ -32,6 +32,9 @@ Planned plugins:
 	- `.JXL`
 
 ## [Click here to download!](../../releases/latest)
+⚠️ Note: I highly recommend that you _don't_ download the released builds,
+but that you build the plugins on your own machine to prevent any version mismatches.  
+It's super easy!
 
 
 ## Building
