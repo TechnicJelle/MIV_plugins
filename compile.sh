@@ -8,9 +8,9 @@ fi
 if [[ "$1" == "release" ]]; then
 	gcc -fPIC -std=gnu11 -O3 miv_stbi.c stbi.o -shared -o miv_stbi.so
 	gcc -fPIC -std=gnu11 -O3 miv_libwebp.c -shared -o miv_libwebp.so -lwebp -lwebpdemux
-	gcc -fPIC -std=gnu11 -O3 miv_zipkra.c stbi_png.o -shared -o miv_zipkra.so -lzip "$(pkg-config --cflags libxml-2.0)" -lxml2
+	gcc -fPIC -std=gnu11 -O3 miv_zipkra.c stbi_png.o -shared -o miv_zipkra.so -lzip $(pkg-config --cflags --libs libxml-2.0)
 else
 	gcc -fPIC -std=gnu11 -g miv_stbi.c stbi.o -shared -o miv_stbi.so
 	gcc -fPIC -std=gnu11 -g miv_libwebp.c -shared -o miv_libwebp.so -lwebp -lwebpdemux
-	gcc -fPIC -std=gnu11 -g miv_zipkra.c stbi_png.o -shared -o miv_zipkra.so -lzip "$(pkg-config --cflags libxml-2.0)" -lxml2
+	gcc -fPIC -std=gnu11 -g miv_zipkra.c stbi_png.o -shared -o miv_zipkra.so -lzip $(pkg-config --cflags --libs libxml-2.0)
 fi
