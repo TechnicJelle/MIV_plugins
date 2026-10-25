@@ -14,7 +14,11 @@ jobs:
       with:
         submodules: recursive
     - name: Install compilation dependencies
-      run: sudo apt update && sudo apt install gcc-14 meson libwebp-dev libtiff-dev
+      run: |
+        sudo apt update
+        sudo apt install gcc-14 meson libwebp-dev libtiff-dev
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-14 100
+        sudo update-alternatives --install /usr/bin/cc cc /usr/bin/gcc-14 100
     - name: Compile
       run: ./compile.sh release
       env:
