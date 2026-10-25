@@ -16,6 +16,10 @@ Available plugins:
   loads the metadata from it using the system-installed [libxml2](https://gitlab.gnome.org/GNOME/libxml2),
   and loads the `mergedimage.png` from it using [stb_image](https://github.com/nothings/stb)
 	- `.KRA`
+- `miv_libtiff`: uses the system-installed [libtiff](https://gitlab.com/libtiff/libtiff)\
+  Note: colours might not display completely correctly. Colours are hard!
+	- `.TIF`
+	- `.TIFF`
 
 Planned plugins:
 - `miv_libavif`: uses the system-installed [libavif](https://github.com/aomediacodec/libavif)
