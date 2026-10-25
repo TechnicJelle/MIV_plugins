@@ -1,4 +1,4 @@
-#include "MIV/plugins/MIV.h"
+#include "MIV.h"
 #include <stdlib.h>
 #include <stdbool.h>
 

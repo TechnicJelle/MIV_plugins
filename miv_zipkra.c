@@ -1,8 +1,8 @@
 #include "common.h"
 #include <unistd.h>
 
-#include <zip.h>
-#include <libxml/parser.h>
+#include "zip.h"
+#include "libxml/parser.h"
 #include "stb/stb_image.h"
 
 int64_t registration_procedure(Plugin_Registration_Entry *registration) {

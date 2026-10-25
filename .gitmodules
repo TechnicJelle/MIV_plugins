@@ -2,5 +2,11 @@
 	path = MIV
 	url = https://github.com/Stvff/MIV.git
 [submodule "stb"]
-	path = stb
+	path = libs/stb
 	url = https://github.com/nothings/stb.git
+[submodule "libs/libzip"]
+	path = libs/libzip
+	url = https://github.com/nih-at/libzip.git
+[submodule "libs/libxml2-ee"]
+	path = libs/libxml2-ee
+	url = https://codeberg.org/nwellnhof/libxml2-ee.git
