@@ -64,3 +64,4 @@ fi
 gcc -fPIC -std=gnu11 $FLAG miv_stbi.c stbi.o "${INCLUDES[@]}" -shared -o miv_stbi.so
 gcc -fPIC -std=gnu11 $FLAG miv_libwebp.c "${INCLUDES[@]}" -shared -o miv_libwebp.so -lwebp -lwebpdemux
 gcc -fPIC -std=gnu11 $FLAG miv_zipkra.c stbi_png.o "libs/libzip/build/lib/libzip.a" "libs/libxml2-ee/build/libxml2.a" "${INCLUDES[@]}" -lz -shared -o miv_zipkra.so
+gcc -fPIC -std=gnu11 $FLAG miv_libtiff.c "${INCLUDES[@]}" -shared -o miv_libtiff.so -ltiff
