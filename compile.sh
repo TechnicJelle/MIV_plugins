@@ -51,7 +51,7 @@ if [ ! -f stbi.o ]; then
 		-Ddocs=disabled \
 		-Dhistory=disabled \
 		-Dreadline=disabled \
-		-Dc_args="-march=native -O3 -fno-semantic-interposition"
+		-Dc_args="-march=x86-64-v3 -O3 -fno-semantic-interposition"
 	meson compile -C "libs/libxml2-ee/build" xml2
 fi
 
