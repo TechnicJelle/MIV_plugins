@@ -8,7 +8,7 @@ if [[ "$1" == "clean" ]]; then
 	exit
 fi
 
-INCLUDES=(-IMIV/plugins -Ilibs -Ilibs/libzip/lib -Ilibs/libxml2-ee/include -Ilibs/libxml2-ee/build/include)
+INCLUDES=(-IMIV/plugins -Ilibs -Ilibs/libzip/lib -Ilibs/libzip/build -Ilibs/libxml2-ee/include -Ilibs/libxml2-ee/build/include)
 
 if [ ! -f stbi.o ]; then
 	gcc -fPIC -std=gnu11 -O3 stbi.c "${INCLUDES[@]}" -c -o stbi.o
