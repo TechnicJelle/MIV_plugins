@@ -14,7 +14,7 @@ jobs:
       with:
         submodules: recursive
     - name: Install compilation dependencies
-      run: sudo apt install meson libwebp-dev libtiff-dev
+      run: sudo apt update && sudo apt install meson libwebp-dev libtiff-dev
     - name: Compile
       run: ./compile.sh release
     - name: Upload
