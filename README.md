@@ -34,6 +34,7 @@ Planned plugins:
 	- `.HTJ2K`
 - `miv_libjxl`: uses the system-installed [libjxl](https://github.com/libjxl/libjxl)
 	- `.JXL`
+ - something for `.PSD` files
 
 ## [Click here to download!](../../releases/latest)
 ⚠️ Note: I highly recommend that you _don't_ download the released builds,
